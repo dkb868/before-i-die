@@ -1,0 +1,80 @@
+html, body{
+    background-color: black !important;
+    color:white;
+}
+
+p{
+    color:white;
+}
+h1{
+    text-align: center;
+    color:#22bbed;
+    margin:0;
+    margin-top: 40px;
+    font-size:30pt;
+}
+td{
+    font-size: 14pt;
+}
+h5{
+    font-size: 14pt;
+}
+ul{
+    list-style: none;
+    text-align: center;
+}
+#form-container{
+    display: block;
+    margin:0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#form-container p{
+    display: inline-block;
+    font-size: 18pt;
+    font-family: arial;
+}
+#form-container input{
+    background-color: black;
+    position: relative;
+    left:0;
+    line-height: 40pt;
+    color: white;
+    font-size: 18pt;
+    width:40vw;
+    border: none;
+}
+#form-container input:focus{
+    outline:none;
+}
+.voteIcon{
+    width:20px;
+}
+hr{
+    width:70vw;
+}
+table{
+    width:50vw;
+    margin:0 auto;
+    font-family: arial;
+    margin-top: 20px;
+}
+
+
+/* nganimate  future
+
+#content-views {position:relative;}
+
+.ng-enter, .ng-leave {
+    width:100%; position:absolute;}
+.ng-enter {
+    -webkit-animation: zoomInDown 1.2s both ease-in;
+    -moz-animation: zoomInDown 1.2s both ease-in;
+    animation: zoomInDown 1.2s both ease-in;
+}
+
+.ng-leave{
+    -webkit-animation: zoomOutDown 0.5s both ease-in;
+    -moz-animation: zoomOutDown 0.5s both ease-in;
+    animation:zoomOutDown 0.5s both ease-in;
+}*/

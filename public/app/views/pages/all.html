@@ -1,0 +1,11 @@
+
+    <h1>
+    </h1>
+    <div ng-repeat="d in $root.dreams"><p>{{d.content}} {{d.points}}</p>
+        <form ng-submit="dream.upvote(d._id)">
+            <input type="submit">
+        </form>
+    </div>
+
+
+

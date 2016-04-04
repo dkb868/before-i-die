@@ -1,0 +1,1 @@
+angular.module('dreamApp', ['app.routes', 'mainCtrl','dreamCtrl','dreamService', 'ngAnimate' ] );
