@@ -1,11 +1,31 @@
 
-    <h1>
-    </h1>
-    <div ng-repeat="d in $root.dreams"><p>{{d.content}} {{d.points}}</p>
-        <form ng-submit="dream.upvote(d._id)">
-            <input type="submit">
-        </form>
-    </div>
+<table>
+    <tbody>
+    <tr ng-repeat="d in $root.dreams">
+        <td><p class="iWantTo"><em>I want to</em>&nbsp;&nbsp;&nbsp;</p></td>
+        <td><p class="dreamContent"><b>{{d.content}}</b></p></td>
+        <td>
+            <div id="votingBlock">
+                <ul>
+                    <li>
+                        <form ng-submit="dream.upvote(d._id)">
+                            <input type="image" src="../../../assets/img/UpArrow.svg" width="22px">
+                        </form>
+                    </li>
+                    <li>
+                        <h4>{{d.points}}</h4>
+                    </li>
+                    <li>
+                        <form ng-submit="dream.downvote(d._id)">
+                            <input type="image" src="../../../assets/img/DownArrow.svg" width="22px">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 
 

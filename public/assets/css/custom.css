@@ -11,7 +11,7 @@ h1{
     color:#22bbed;
     margin:0;
     margin-top: 40px;
-    font-size:30pt;
+    font-size:60px;
 }
 td{
     font-size: 14pt;
@@ -31,7 +31,7 @@ ul{
 }
 #form-container p{
     display: inline-block;
-    font-size: 18pt;
+    font-size: 30px;
     font-family: arial;
 }
 #form-container input{
@@ -40,7 +40,7 @@ ul{
     left:0;
     line-height: 40pt;
     color: white;
-    font-size: 18pt;
+    font-size: 30px;
     width:40vw;
     border: none;
 }
@@ -60,7 +60,40 @@ table{
     margin-top: 20px;
 }
 
+.customRow {
+    width: 100%;
+    text-align:center;
+}
 
+.customBlock {
+    float: left;
+
+}
+
+.voteBlock {
+    width: 100px;
+    float: right;
+}
+
+.dreamContent {
+    font-size: 27px;
+}
+
+.iWantTo {
+    font-size: 20px;
+}
+#buckyList {
+    color:#22bbed;
+    float: left;
+}
+
+.linkTitle {
+    font-size: 32px;
+}
+
+#votingBlock {
+    margin-top: 25px;
+}
 /* nganimate  future
 
 #content-views {position:relative;}
