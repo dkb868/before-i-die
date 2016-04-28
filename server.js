@@ -37,8 +37,12 @@ app.use(express.static(__dirname + '/public'));
 
 // ROUTES FOR OUR API
 var apiRoutes = require('./app/routes/api')(app, express);
+var userRoutes = require('./app/routes/users')(app, express);
+var authRoutes = require("./app/routes/auth")(app, express);
 // all of our routes will be prefixed with /api
 app.use('/api', apiRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 // =======================================================
 
 
