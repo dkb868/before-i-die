@@ -31,7 +31,7 @@ module.exports = function(app,express){
           userFound = undefined;
           message = err;
         }
-        
+
         res.json({
           status: status,
           user: user,
@@ -43,6 +43,7 @@ module.exports = function(app,express){
 
   apiRouter.post('/createAccount', function (req, res, next) {
     var newUser = User();
+    console.log("EMAIL: " + req.body.email);
     newUser.email = req.body.email;
     newUser.password = hashUserPassword(req.body.password);
     newUser.save();
@@ -50,6 +51,7 @@ module.exports = function(app,express){
     res.json({
       status:true,
       message:"Account successfully created!",
+      user: newUser,
     });
 
   });
@@ -57,7 +59,7 @@ module.exports = function(app,express){
   function hashUserPassword(password) {
     return Crypto
       .createHash('sha1')
-      .update(salt + password + salt);
+      .update(salt + password + salt)
       .digest("hex")
       .substring(0,6);
   };
