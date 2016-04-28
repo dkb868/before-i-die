@@ -2,7 +2,7 @@
  * Created by mitrikyle on 4/2/16.
  */
 
-var Dream = require('../models/dream');
+var Dream = require('../models/Dream.js');
 
 module.exports = function(app,express){
     var apiRouter = express.Router();
