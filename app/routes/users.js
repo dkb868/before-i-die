@@ -2,9 +2,7 @@
 
 // /api/users/ ROUTE//
 module.exports = function(app,express){
-  var Crypto = require('crypto');
   var apiRouter = express.Router();
-  var salt = 'imsaltyaf7';
   var User = require("../models/User.js");
 
 	apiRouter.get('/', function (req,res,next){
@@ -56,6 +54,8 @@ module.exports = function(app,express){
 
   });
 
+  var salt = 'imsaltyaf7';
+  var Crypto = require('crypto');
   function hashUserPassword(password) {
     return Crypto
       .createHash('sha1')
