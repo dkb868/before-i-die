@@ -38,6 +38,20 @@ module.exports = function(app,express){
     });
 	});
 
+  // check if a user is logged in
+  apiRouter.get('/status', function(req,res) {
+    if (!req.isAuthenticated()) {
+      return res.status(200).json({
+        status: false
+      });
+    }
+    res.status(200).json({
+      status: true
+    });
+  });
 
-	return apiRouter;
+
+
+
+  return apiRouter;
 };

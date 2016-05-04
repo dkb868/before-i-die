@@ -65,5 +65,7 @@ module.exports = function(app,express){
       .substring(0,6);
   };
 
-	return apiRouter;
+
+
+  return apiRouter;
 };

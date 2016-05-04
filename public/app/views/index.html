@@ -34,6 +34,8 @@
     <script src="app/controllers/dreamCtrl.js"></script>
     <script src="app/controllers/loginCtrl.js"></script>
     <script src="app/controllers/logoutCtrl.js"></script>
+    <script src="app/controllers/registerCtrl.js"></script>
+
 
     <!-- services -->
     <script src="app/services/authService.js"></script>
@@ -58,6 +60,10 @@
         <!-- Text input-->
                 <input ng-model="main.dreamData.content" id="dream-text-field" name="textinput" placeholder="skydive" type="text">
     </form>
+        <div ng-controller="logoutController as logout">
+            <a ng-click='logout.logout()' class="btn btn-default">Logout</a>
+        </div>
+
         <br><br>
     </div>
     <div class="container text-center ">

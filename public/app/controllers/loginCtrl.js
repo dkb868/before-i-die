@@ -2,18 +2,18 @@
  * Created by mitrikyle on 5/3/16.
  */
 
-angular.module('loginCtrl', [  'authService'])
+angular.module('loginCtrl', ['authService'])
 
 .controller('loginController', function($location, AuthService) {
         var vm = this;
         vm.login = function () {
-
+            console.log("ZOMG LOGIN");
             // intial values;
             vm.error = false;
             vm.disabled = true;
 
             // call login from service
-            AuthService.login(vm.loginForm.username, vm.loginForm.password)
+            AuthService.login(vm.loginForm.email, vm.loginForm.password)
 
             // handle success
                 .then(function() {

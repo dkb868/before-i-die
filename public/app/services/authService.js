@@ -14,17 +14,29 @@ angular.module('authService', [])
         }
 
         function getUserStatus() {
-            return user;
+            return $http.get('api/auth/status')
+                // handle success
+                .success(function (data) {
+                    if(data.status){
+                        user = true;
+                    } else {
+                        user = false;
+                    }
+                })
+                // handle error
+                .error(function (data) {
+                    user = false;
+                });
         }
 
-        // TODO email or username?
+
         // TODO return http status code in auth routes
         function login(email, password) {
             // create a new instance of deferred
             var deffered = $q.defer();
 
             // send a post request to the server
-            $http.post('/api/login',
+            $http.post('/api/auth/login',
                 {email: email, password: password})
             // handle success
                 .success(function (data, status) {
@@ -51,7 +63,7 @@ angular.module('authService', [])
             var deffered = $q.defer();
 
             // send a get request to the erver
-            $http.get('/api/logout')
+            $http.get('/api/auth/logout')
                 // handle success
                 .success(function(data) {
                     user = false;
@@ -68,13 +80,13 @@ angular.module('authService', [])
             return deffered.promise;
         }
 
-        // TODO email or username?
+
         function register(email, password) {
             // create new instance of deferred
             var deferred = $q.defer();
 
             // send a post request to the server
-            $http.post('/user/register',
+            $http.post('/api/users/createAccount',
                 {email: email, password: password})
 
                 // handle success

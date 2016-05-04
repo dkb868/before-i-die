@@ -7,27 +7,35 @@ angular.module('app.routes', ['ngRoute'])
             .when('/', {
                 templateUrl: 'app/views/pages/all.html',
                 controller: 'newDreamController',
-                controllerAs: 'dream'
+                controllerAs: 'dream',
+                access : {restricted: true}
             })
+
 
             .when('/top', {
                 templateUrl: 'app/views/pages/all.html',
                 controller: 'dreamController',
-                controllerAs: 'dream'
+                controllerAs: 'dream',
+                access : {restricted: true}
             })
 
             .when('/login' , {
                 templateUrl : 'app/views/pages/login.html',
-                controller: 'loginController'
+                controller: 'loginController',
+                controllerAs: 'login',
+                access : {restricted: false}
             })
 
             .when('/logout', {
-                controller: 'logoutController'
+                controller: 'logoutController',
+                access : {restricted: true}
             })
 
             .when('/register', {
                 templateUrl : 'app/views/pages/register.html',
-                controller: 'registerController'
+                controller: 'registerController',
+                controllerAs: 'register',
+                access : {restricted: false}
             })
 
             .otherwise({
