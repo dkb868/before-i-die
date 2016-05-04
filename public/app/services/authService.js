@@ -1,7 +1,7 @@
 /**
  * Created by mitrikyle on 5/3/16.
  */
-angular.module('myApp').factory('AuthService',
+angular.module('dreamApp').factory('AuthService',
     ['$q', '$timeout', '$http',
     function ($q, $timeout, $http) {
 
