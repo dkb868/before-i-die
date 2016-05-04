@@ -39,6 +39,7 @@ module.exports = function(app,express){
       });
 	});
 
+  // TODO whyy doesn't createAccount deal with failure?
   apiRouter.post('/createAccount', function (req, res, next) {
     var newUser = User();
     console.log("EMAIL: " + req.body.email);
@@ -46,7 +47,7 @@ module.exports = function(app,express){
     newUser.password = hashUserPassword(req.body.password);
     newUser.save();
 
-    res.json({
+    res.status(200).json({
       status:true,
       message:"Account successfully created!",
       user: newUser,

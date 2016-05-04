@@ -15,13 +15,13 @@ module.exports = function(app,express){
     passport.authenticate('local'),
     function (req, res, next){
       if (req.user) {
-        res.json({
+        res.status(200).json({
           status: true,
           user: req.user,
           message: "Logged in!",
         });
       } else {
-        res.json({
+        res.status(401).json({
           status: false,
           user: undefined,
           message: "Invalid email or password",
@@ -32,7 +32,7 @@ module.exports = function(app,express){
 
 	apiRouter.get('/logout', function (req, res, next) {
     req.logout();
-    res.json({
+    res.status(200).json({
       status: true,
       message: "Logged out!",
     });
