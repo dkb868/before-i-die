@@ -2,9 +2,9 @@
  * Created by mitrikyle on 5/3/16.
  */
 
-angular.module('loginCtrl', ['$scope', '$location', 'AuthService'])
+angular.module('loginCtrl', [  'authService'])
 
-.controller('loginController', function($scope, $location, AuthService) {
+.controller('loginController', function($location, AuthService) {
         var vm = this;
         vm.login = function () {
 

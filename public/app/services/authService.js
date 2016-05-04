@@ -1,9 +1,9 @@
 /**
  * Created by mitrikyle on 5/3/16.
  */
-angular.module('dreamApp').factory('AuthService',
-    ['$q', '$timeout', '$http',
-    function ($q, $timeout, $http) {
+angular.module('authService', [])
+
+    .factory('AuthService', function ($q, $timeout, $http) {
 
         // create user variable
         var user = null;
@@ -102,4 +102,4 @@ angular.module('dreamApp').factory('AuthService',
             logout: logout,
             register: register
         });
-    }]);
+    });

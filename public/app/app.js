@@ -1,1 +1,1 @@
-angular.module('dreamApp', ['app.routes', 'mainCtrl','dreamCtrl', 'loginCtrl', 'logoutCtrl', 'dreamService', 'AuthService', 'ngAnimate' ] );
+angular.module('dreamApp', ['app.routes', 'mainCtrl','dreamCtrl', 'loginCtrl', 'logoutCtrl', 'dreamService', 'authService', 'ngAnimate' ] );

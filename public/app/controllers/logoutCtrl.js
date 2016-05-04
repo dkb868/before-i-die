@@ -2,7 +2,7 @@
  * Created by mitrikyle on 5/3/16.
  */
 
-angular.module('logoutCtrl', ['$location', 'AuthService'])
+angular.module('logoutCtrl', ['authService'])
 
 .controller('logoutController', function($location, AuthService) {
         var vm = this;
