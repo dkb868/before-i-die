@@ -39,18 +39,47 @@ module.exports = function(app,express){
       });
 	});
 
-  // TODO whyy doesn't createAccount deal with failure?
+  apiRouter.get('/dreams/:userId', function (req ,res , next) {
+    User.findOne({_id:req.params.userId})
+      .populate("dreams")
+      .exec(function (err, user) {
+        if (user) {
+          res.status(200).json({
+            status: true,
+            dreams: user.dreams,
+            message: "Takes your dreams baby",
+          });
+        } else {
+          res.status(401).json({
+            status: false,
+            dreams: undefined,
+            message: "We couldn't find those dreams for this user.",
+            error: err,
+          });
+        }
+      });
+  });
+
+//TODO: I DON"T NEED YOUR SASS
   apiRouter.post('/createAccount', function (req, res, next) {
     var newUser = User();
     console.log("EMAIL: " + req.body.email);
     newUser.email = req.body.email;
     newUser.password = hashUserPassword(req.body.password);
-    newUser.save();
-
-    res.status(200).json({
-      status:true,
-      message:"Account successfully created!",
-      user: newUser,
+    newUser.save(function (err) {
+      if (err) {
+        res.status(401).json({
+          status: false,
+          user: undefined,
+          message: err,
+        });
+      } else {
+        res.status(200).json({
+          status:true,
+          user: newUser,
+          message:"Account successfully created!",
+        });
+      }
     });
 
   });

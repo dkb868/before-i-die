@@ -17,16 +17,27 @@ module.exports = function(app,express){
 
     // route for adding a dream
     apiRouter.post('/dreams', function(req,res){
-        // create a new instance of draem model
+        // create a new instance of dream model
         var dream = new Dream();
         // set the dream info (comes from request)
+        dream.user = req.user.id;
         dream.content = req.body.content;
         // save the dream
-        dream.save(function(err){
+        dream.save(function(err, newDream){
             if(err){
                 return res.send(err);
             }
-            res.json({message: 'Dream created'});
+
+            // save id reference to user
+            req.user.dreams.push(newDream.id);
+            //TODO: prevent callback hell (move to schema)
+            req.user.save(function (err, updatedUser) {
+              if (err) {
+                return res.send(err);
+              } else {
+                res.json({message: 'Dream created'});
+              }
+            });
         });
     });
 

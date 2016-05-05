@@ -8,16 +8,16 @@ var salt = 'imsaltyaf7';
 var Crypto = require('crypto');
 
 var UserSchema = new Schema({
-    email: String,
-    password: String,
+    email: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
     dateCreated: { type: Date, default: Date.now},
-    dreams: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dream'}],
+    dreams: {type : [{type: mongoose.Schema.Types.ObjectId, ref: 'Dream'}], default: []},
 
 });
 
 UserSchema.methods.validPassword = function(password) {
   var comparePassword = hashUserPassword(password);
-  
+
   if (comparePassword == this.password) {
     return true;
   } else {
@@ -35,4 +35,4 @@ function hashUserPassword(password) {
 
 // return the model
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = User = mongoose.model('User', UserSchema);
