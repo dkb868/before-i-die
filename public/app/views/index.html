@@ -59,10 +59,10 @@
     <div id="logout" ng-controller="logoutController as logout "  ng-hide="!logout.isLoggedIn" >
         <a ng-click='logout.logout()'><p class="smallButton">Logout</p></a>
     </div>
-    <h1>Before I Die</h1>
+    <h1>BuckyList</h1>
     <div id="form-container">
     <form ng-submit="main.saveDream()">
-        <p><em>I want to</em>&nbsp;</p>
+        <p><em>Before I die I want to</em>&nbsp;</p>
         <!-- Text input-->
                 <input ng-model="main.dreamData.content" id="dream-text-field" name="textinput" placeholder="skydive" type="text">
     </form>
@@ -70,16 +70,13 @@
         <br><br>
     </div>
     <div class="container text-center ">
-        <div class="col-md-3">
-           <p class="linkTitle" id="buckyList">Buckylist</p>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
            <a href="/"><p class="linkTitle">New</p></a>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <a href="/top"> <p class="linkTitle">Top</p></a>
         </div>
-        <div class="col-md-3" ng-controller="loginController as login">
+        <div class="col-md-4" ng-controller="loginController as login">
             <a ng-if="login.isLoggedIn" href="/user"><p class="linkTitle">My List</p></a>
             <a ng-hide="login.isLoggedIn" href="/login"><p class="linkTitle">Login</p></a>
         </div>
