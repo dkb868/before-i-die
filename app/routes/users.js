@@ -61,6 +61,7 @@ module.exports = function(app,express){
   });
 
 //TODO: I DON"T NEED YOUR SASS
+// TODO: ok will. btw do we talk through todos now ?
   apiRouter.post('/createAccount', function (req, res, next) {
     var newUser = User();
     console.log("EMAIL: " + req.body.email);
