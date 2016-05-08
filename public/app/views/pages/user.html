@@ -4,23 +4,14 @@
 
 <table>
     <tbody>
-    <tr ng-repeat="d in $root.dreams">
+    <tr ng-repeat="d in user.dreams">
         <td class="col-md-2"><p class="iWantTo"><em>I want to</em>&nbsp;&nbsp;&nbsp;</p></td>
         <td class="col-md-5"><p class="dreamContent"><b ng-bind="d.content"></b></p></td>
         <td class="col-md-5">
             <div id="votingBlock">
                 <ul>
                     <li>
-                        <span class="glyphicon glyphicon-triangle-top" ng-click="dream.upvote(d._id)"></span>
-                    </li>
-                    <li>
                         <h4 ng-bind="d.points"></h4>
-                    </li>
-                    <li>
-                        <span class="glyphicon glyphicon-triangle-bottom" ng-click="dream.downvote(d._id)"></span>
-                    </li>
-                    <li>
-                        <span class="glyphicon glyphicon-star" ng-click="dream.addToList(d._id)"></span>
                     </li>
                 </ul>
             </div>

@@ -29,6 +29,18 @@ angular.module('authService', [])
                 });
         }
 
+        function getId() {
+            return $http.get('api/auth/status')
+                .success(function(data) {
+                    if(data.status){
+                        console.log(data.id);
+                        return data.id;
+                    } else {
+                        return null;
+                    }
+                });
+        }
+
 
         // TODO return http status code in auth routes
         function login(email, password) {
@@ -112,6 +124,7 @@ angular.module('authService', [])
             getUserStatus: getUserStatus,
             login: login,
             logout: logout,
-            register: register
+            register: register,
+            getId : getId
         });
     });

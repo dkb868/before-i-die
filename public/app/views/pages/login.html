@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 col-md-offset-4" >
     <h1>Login</h1>
     <div ng-show="error" class="alert alert-danger">{{login.errorMessage}}</div>
     <form class="form" ng-submit="login.login()">
@@ -10,8 +10,9 @@
             <label>Password</label>
             <input type="password" class="form-control" name="password" ng-model="login.loginForm.password" required>
         </div>
-        <div>
-            <button type="submit" class="btn btn-default" ng-disabled="login.disabled">Login</button>
+        <div class="block">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="/register"><p class="linkTitle">Sign Up</p> </a>
         </div>
     </form>
 </div>

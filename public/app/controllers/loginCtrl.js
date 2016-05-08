@@ -4,7 +4,7 @@
 
 angular.module('loginCtrl', ['authService'])
 
-.controller('loginController', function($location, AuthService) {
+.controller('loginController', function($location, $rootScope, AuthService) {
         var vm = this;
         vm.login = function () {
             console.log("ZOMG LOGIN");
@@ -30,4 +30,16 @@ angular.module('loginCtrl', ['authService'])
                     vm.loginForm = {};
                 });
         };
+
+        $rootScope.$on('$routeChangeStart',
+            function (event, next, current) {
+                AuthService.getUserStatus()
+                    .then(function () {
+                        vm.isLoggedIn = AuthService.isLoggedIn();
+                    })
+            });
+
+        vm.redirect = function(){
+            $location.path('/login');
+        }
     });

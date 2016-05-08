@@ -8,7 +8,7 @@ angular.module('app.routes', ['ngRoute'])
                 templateUrl: 'app/views/pages/all.html',
                 controller: 'newDreamController',
                 controllerAs: 'dream',
-                access : {restricted: true}
+                access : {restricted: false}
             })
 
 
@@ -16,6 +16,13 @@ angular.module('app.routes', ['ngRoute'])
                 templateUrl: 'app/views/pages/all.html',
                 controller: 'dreamController',
                 controllerAs: 'dream',
+                access : {restricted: false}
+            })
+
+            .when('/user', {
+                templateUrl: 'app/views/pages/user.html',
+                controller: 'userController',
+                controllerAs: 'user',
                 access : {restricted: true}
             })
 

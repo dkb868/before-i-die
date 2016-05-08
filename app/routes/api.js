@@ -60,6 +60,8 @@ module.exports = function(app,express){
             });
         });
 
+    // TODO use user accoutns to prevent dobule voting
+
     // route to downvote
     apiRouter.route('/dreams/downvote/:dream_id')
 
@@ -77,6 +79,25 @@ module.exports = function(app,express){
                 });
             });
         });
+
+
+    // route to add dream to user's list
+    // may be bad restful api concepts but,
+    // fuck that
+    apiRouter.post('/dreams/add/:dream_id', function(req,res){
+        // add new dream to user's list
+        req.user.dreams.push(req.params.dream_id);
+        req.user.save(function (err, updatedUser) {
+            if (err) {
+                return res.send(err);
+            } else {
+                console.log('dream added to users list!');
+                res.json({message: 'Dream added to users list'});
+            }
+        });
+    });
+
+
 
 
 
