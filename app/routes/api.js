@@ -79,6 +79,24 @@ module.exports = function(app,express){
         });
 
 
+    // route to add dream to user's list
+    // may be bad restful api concepts but,
+    // fuck that
+    apiRouter.post('/dreams/add/:dream_id', function(req,res){
+        // add new dream to user's list
+        req.user.dreams.push(newDream.id);
+        req.user.save(function (err, updatedUser) {
+            if (err) {
+                return res.send(err);
+            } else {
+                res.json({message: 'Dream added to users list'});
+            }
+        });
+    });
+
+
+
+
 
     return apiRouter;
 
