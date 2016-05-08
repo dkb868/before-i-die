@@ -4,7 +4,7 @@
 
 angular.module('logoutCtrl', ['authService'])
 
-.controller('logoutController', function($location, AuthService) {
+.controller('logoutController', function($location, $rootScope, $route, AuthService) {
         var vm = this;
         vm.logout = function() {
 
@@ -14,6 +14,13 @@ angular.module('logoutCtrl', ['authService'])
                     $location.path('/login');
                 });
         };
+        $rootScope.$on('$routeChangeStart',
+            function (event, next, current) {
+                AuthService.getUserStatus()
+                    .then(function () {
+                        vm.isLoggedIn = AuthService.isLoggedIn();
+                    })
+            });
     });
 
 // TODO add all controllers to html

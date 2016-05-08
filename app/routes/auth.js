@@ -46,7 +46,8 @@ module.exports = function(app,express){
       });
     }
     res.status(200).json({
-      status: true
+      status: true,
+      id : req.user._id
     });
   });
 

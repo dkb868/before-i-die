@@ -15,7 +15,9 @@ angular.module('dreamService', [])
 
         // create a new dream
         dreamFactory.create = function(dreamData) {
-            return $http.post('/api/dreams/', dreamData);
+            // no empty submissions
+            if (dreamData.content != '')
+                return $http.post('/api/dreams/', dreamData);
         };
 
         //upvote a dream
@@ -26,6 +28,11 @@ angular.module('dreamService', [])
         //downvote a dream
         dreamFactory.downvote = function(id) {
             return $http.put('/api/dreams/downvote/' + id);
+        };
+
+        // add a dream to the uers liss
+        dreamFactory.addToList = function(id) {
+            return $http.post('/api/dreams/add/' + id);
         };
 
         // return our entire dreamFactory object
