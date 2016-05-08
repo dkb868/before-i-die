@@ -1,8 +1,8 @@
-var passport = require('passport')
-	, LocalStrategy = require('passport-local').Strategy;
 
-var User = require('../models/User.js');
 module.exports = function(passport) {
+    var LocalStrategy = require('passport-local').Strategy;
+    var User = require('../models/User.js');
+
 	  // used to serialize the user for the session
 		passport.serializeUser(function(user, done) {
 		  done(null, user.id);
@@ -15,9 +15,9 @@ module.exports = function(passport) {
 	  });
 
 		passport.use(new LocalStrategy({
-			usernameField: 'email',
+		  usernameField: 'email',
 			passwordField: 'password' },
-			function(email, password, done) { User.findOne({ email: email },
+			function(email, password, done) { User.findOne({ email: email},
 			function (err, user) {
 				if (err) { return done(err); }
 				if (!user) {

@@ -6,11 +6,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var DreamSchema = new Schema({
+    user: {type: Schema.Types.ObjectId, ref: "User"},
     content: String,
     date: { type: Date, default: Date.now},
     points: {type: Number, default: 0}
 });
 
-// return the model
+DreamSchema.statics.createDream = function(user, noInverse) {
 
-module.exports = mongoose.model('Dream', DreamSchema);
+}
+
+// return the model
+module.exports = Dream = mongoose.model('Dream', DreamSchema);

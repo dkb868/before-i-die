@@ -17,16 +17,27 @@ module.exports = function(app,express){
 
     // route for adding a dream
     apiRouter.post('/dreams', function(req,res){
-        // create a new instance of draem model
+        // create a new instance of dream model
         var dream = new Dream();
         // set the dream info (comes from request)
+        dream.user = req.user.id;
         dream.content = req.body.content;
         // save the dream
-        dream.save(function(err){
+        dream.save(function(err, newDream){
             if(err){
                 return res.send(err);
             }
-            res.json({message: 'Dream created'});
+
+            // save id reference to user
+            req.user.dreams.push(newDream.id);
+            //TODO: prevent callback hell (move to schema)
+            req.user.save(function (err, updatedUser) {
+              if (err) {
+                return res.send(err);
+              } else {
+                res.json({message: 'Dream created'});
+              }
+            });
         });
     });
 
@@ -49,6 +60,8 @@ module.exports = function(app,express){
             });
         });
 
+    // TODO use user accoutns to prevent dobule voting
+
     // route to downvote
     apiRouter.route('/dreams/downvote/:dream_id')
 
@@ -66,6 +79,25 @@ module.exports = function(app,express){
                 });
             });
         });
+
+
+    // route to add dream to user's list
+    // may be bad restful api concepts but,
+    // fuck that
+    apiRouter.post('/dreams/add/:dream_id', function(req,res){
+        // add new dream to user's list
+        req.user.dreams.push(req.params.dream_id);
+        req.user.save(function (err, updatedUser) {
+            if (err) {
+                return res.send(err);
+            } else {
+                console.log('dream added to users list!');
+                res.json({message: 'Dream added to users list'});
+            }
+        });
+    });
+
+
 
 
 

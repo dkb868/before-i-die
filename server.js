@@ -10,6 +10,8 @@ var mongoose = require('mongoose'); // for working w/ our database
 var port = process.env.PORT || 3000; // set the port for our app
 var config = require('./config');
 var path = require('path');
+var passport = require('passport');
+var session = require("express-session");
 
 /// connect to our database
 mongoose.connect(config.database);
@@ -18,6 +20,17 @@ mongoose.connect(config.database);
 // use body parser so we can grab information from POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Initialize express session and passport session
+app.use(session({
+  secret: 'terribly bad secret', // TODO: Change
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // configure our app to handle CORS requests
 app.use(function(req, res, next) {
@@ -52,6 +65,7 @@ app.use('/api/auth', authRoutes);
 app.get('*', function(req,res) {
     res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
+
 
 
 //REGISTER OUR ROUTES-------------------------------------

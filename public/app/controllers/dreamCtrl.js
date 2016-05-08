@@ -5,11 +5,12 @@ function custom_sort(a, b) {
     return new Date(b.date).getTime() - new Date(a.date).getTime() ;
 }
 
+// TODO, use angualr sortign instead of two controllers -_-
 
 
-angular.module('dreamCtrl', ['dreamService'])
+angular.module('dreamCtrl', ['dreamService','authService'])
 
-.controller('dreamController', function($routeParams,$rootScope, Dream) {
+.controller('dreamController', function($scope,$routeParams,$rootScope, $location, Dream, AuthService) {
         var vm = this;
 
         // grab all the dreams at page load
@@ -21,50 +22,86 @@ angular.module('dreamCtrl', ['dreamService'])
 
         // function to save dream
         vm.saveDream = function() {
-            // call the dreamService function to post
-            Dream.create(vm.dreamData)
-                .success(function(data){
-                    // clear the form
-                    vm.dreamData = {};
+            console.log("User logged in: " + AuthService.isLoggedIn());
+            // if not logged in, redirect to login page
+            if (!AuthService.isLoggedIn()){
+                $location.path('/login');
+            } else {
+                // call the dreamService function to post
+                Dream.create(vm.dreamData)
+                    .success(function (data) {
+                        // clear the form
+                        vm.dreamData = {};
 
-                    // get all dreams to updaet dreams
-                    Dream.all()
-                        .success(function(data){
-                            $rootScope.dreams = data;
-                        });
-                });
+                        // get all dreams to updaet dreams
+                        Dream.all()
+                            .success(function (data) {
+                                $rootScope.dreams = data;
+                            });
+                    });
+            }
         };
-        vm.voted = null;
+        vm.voted = null;        // function to upvote/downvote
+
         vm.upvote = function(id) {
-            Dream.upvote(id)
-                .success(function(data){
-                    // mark user as voted
-                    vm.voted = 'up';
-                    // get all dreams to updaet dreams
-                    Dream.all()
-                        .success(function(data){
-                            $rootScope.dreams = data;
-                        });
-                })
+
+            console.log("User logged in: " + AuthService.isLoggedIn());
+            // if not logged in, redirect to login page
+            if (!AuthService.isLoggedIn()){
+                $location.path('/login');
+            } else {
+                Dream.upvote(id)
+                    .success(function (data) {
+                        // mark user as voted
+                        vm.voted = 'up';
+                        // get all dreams to updaet dreams
+                        Dream.all()
+                            .success(function (data) {
+                                $rootScope.dreams = data;
+                            });
+                    })
+            }
         };
 
         vm.downvote = function(id) {
-            Dream.downvote(id)
-                .success(function(data){
-                    // mark user as voted
-                    vm.voted = 'down';
-                    // get all dreams to updaet dreams
-                    Dream.all()
-                        .success(function(data){
-                            $rootScope.dreams = data;
-                        });
-                })
+
+            console.log("User logged in: " + AuthService.isLoggedIn());
+            // if not logged in, redirect to login page
+            if (!AuthService.isLoggedIn()){
+                $location.path('/login');
+            } else {
+                Dream.downvote(id)
+                    .success(function (data) {
+                        // mark user as voted
+                        vm.voted = 'down';
+                        // get all dreams to updaet dreams
+                        Dream.all()
+                            .success(function (data) {
+                                $rootScope.dreams = data;
+                            });
+                    })
+            }
         };
 
-        // function to upvote/downvote
+        vm.addToList = function(id){
+
+            console.log("User logged in: " + AuthService.isLoggedIn());
+            // if not logged in, redirect to login page
+            if (!AuthService.isLoggedIn()){
+                $location.path('/login');
+            } else {
+                Dream.addToList(id)
+                    .success(function (data) {
+                        console.log("Succesfully added to list");
+                        $location.path('/user');
+
+                    });
+            }
+        };
+
     })
 
-    .controller('newDreamController', function($rootScope, $routeParams,Dream) {
+    .controller('newDreamController', function($rootScope,$location, $routeParams,Dream,AuthService) {
         var vm = this;
 
 
@@ -77,7 +114,7 @@ angular.module('dreamCtrl', ['dreamService'])
                 $rootScope.dreams = data;
             });
 
-        // function to save dream
+        // function to save dream TODO delete useless function or figure out how to do it proeprly
         vm.saveDream = function() {
             // call the dreamService function to post
             Dream.create(vm.dreamData)
@@ -94,34 +131,66 @@ angular.module('dreamCtrl', ['dreamService'])
                         });
                 });
         };
+
+        // function to upvote/downvote
+
         vm.voted = null;
         vm.upvote = function(id) {
-            Dream.upvote(id)
-                .success(function(data){
-                    // mark user as voted
-                    vm.voted = 'up';
-                    // get all dreams to updaet dreams
-                    Dream.all()
-                        .success(function(data){
-                            data.sort(custom_sort);
-                            $rootScope.dreams = data;
-                        });
-                })
+
+            console.log("User logged in: " + AuthService.isLoggedIn());
+            // if not logged in, redirect to login page
+            if (!AuthService.isLoggedIn()){
+                $location.path('/login');
+            } else {
+                Dream.upvote(id)
+                    .success(function (data) {
+                        // mark user as voted
+                        vm.voted = 'up';
+                        // get all dreams to updaet dreams
+                        Dream.all()
+                            .success(function (data) {
+                                data.sort(custom_sort);
+                                $rootScope.dreams = data;
+                            });
+                    })
+            }
         };
 
         vm.downvote = function(id) {
-            Dream.downvote(id)
-                .success(function(data){
-                    // mark user as voted
-                    vm.voted = 'down';
-                    // get all dreams to updaet dreams
-                    Dream.all()
-                        .success(function(data){
-                            data.sort(custom_sort);
-                            $rootScope.dreams = data;
-                        });
-                })
+
+
+            console.log("User logged in: " + AuthService.isLoggedIn());
+            // if not logged in, redirect to login page
+            if (!AuthService.isLoggedIn()){
+                $location.path('/login');
+            } else {
+
+                Dream.downvote(id)
+                    .success(function (data) {
+                        // mark user as voted
+                        vm.voted = 'down';
+                        // get all dreams to updaet dreams
+                        Dream.all()
+                            .success(function (data) {
+                                data.sort(custom_sort);
+                                $rootScope.dreams = data;
+                            });
+                    })
+            }
         };
 
-        // function to upvote/downvote
+        vm.addToList = function(id){
+
+            console.log("User logged in: " + AuthService.isLoggedIn());
+            // if not logged in, redirect to login page
+            if (!AuthService.isLoggedIn()){
+                $location.path('/login');
+            } else {
+                Dream.addToList(id)
+                    .success(function (data) {
+                        console.log("Succesfully added to list");
+                        $location.path('/user');
+                    });
+            }
+        };
     });
