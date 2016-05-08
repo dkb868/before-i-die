@@ -8,7 +8,8 @@ angular.module('app.routes', ['ngRoute'])
                 templateUrl: 'app/views/pages/all.html',
                 controller: 'newDreamController',
                 controllerAs: 'dream',
-                access : {restricted: false}
+                access : {restricted: false},
+                activeTab: 'new'
             })
 
 
@@ -16,21 +17,24 @@ angular.module('app.routes', ['ngRoute'])
                 templateUrl: 'app/views/pages/all.html',
                 controller: 'dreamController',
                 controllerAs: 'dream',
-                access : {restricted: false}
+                access : {restricted: false},
+                activeTab: 'top'
             })
 
             .when('/user', {
                 templateUrl: 'app/views/pages/user.html',
                 controller: 'userController',
                 controllerAs: 'user',
-                access : {restricted: true}
+                access : {restricted: true},
+                activeTab: 'user'
             })
 
             .when('/login' , {
                 templateUrl : 'app/views/pages/login.html',
                 controller: 'loginController',
                 controllerAs: 'login',
-                access : {restricted: false}
+                access : {restricted: false},
+                activeTab: 'login'
             })
 
             .when('/logout', {
@@ -42,7 +46,8 @@ angular.module('app.routes', ['ngRoute'])
                 templateUrl : 'app/views/pages/register.html',
                 controller: 'registerController',
                 controllerAs: 'register',
-                access : {restricted: false}
+                access : {restricted: false},
+                activeTab: 'register'
             })
 
             .otherwise({
