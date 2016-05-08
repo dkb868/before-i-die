@@ -3,6 +3,7 @@
  */
 
 var Dream = require('../models/Dream.js');
+var User = require('../models/User.js');
 
 module.exports = function(app,express){
     var apiRouter = express.Router();
@@ -84,9 +85,14 @@ module.exports = function(app,express){
     // route to add dream to user's list
     // may be bad restful api concepts but,
     // fuck that
-    apiRouter.post('/dreams/add/:dream_id', function(req,res){
+    apiRouter.post('/dreams/add/:dreamId', function(req,res){
         // add new dream to user's list
-        req.user.dreams.push(req.params.dream_id);
+
+        //
+        User.update({_id: req.user.id}, { $addToSet: {dreams: req.params.dreamId}}, function (err) {
+          console.log(err);
+        });
+
         req.user.save(function (err, updatedUser) {
             if (err) {
                 return res.send(err);
