@@ -16,9 +16,10 @@ angular.module('registerCtrl', ['authService'])
 
                 // handle success
                 .then(function () {
-                    $location.path('/login');
-                    vm.disabled = false;
-                    vm.registerForm = {};
+                    AuthService.login(vm.registerForm.email, vm.registerForm.password)
+                    .then(function(){
+                        $location.path('/');
+                    });
                 })
 
                 // handle error

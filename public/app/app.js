@@ -1,4 +1,4 @@
-angular.module('dreamApp', ['app.routes', 'mainCtrl','dreamCtrl', 'loginCtrl', 'logoutCtrl', 'registerCtrl', 'dreamService', 'authService', 'ngAnimate' ] )
+angular.module('dreamApp', ['app.routes', 'mainCtrl','dreamCtrl', 'loginCtrl', 'logoutCtrl', 'registerCtrl', 'userCtrl', 'userService', 'dreamService', 'authService', 'ngAnimate' ] )
 
 .run(function ($rootScope, $location, $route, AuthService) {
         $rootScope.$on('$routeChangeStart',
